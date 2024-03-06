@@ -25,6 +25,7 @@ module.exports = function(RED) {
         // Retrieve configuration values
         var min = parseFloat(config.min) || 0;
         var max = parseFloat(config.max) || 100;
+        var status = false; //use this to display test status on dashboard
 
         // Initialize peak value
         var peakValue = null;
@@ -35,14 +36,16 @@ module.exports = function(RED) {
                 // If peakValue is not initialized, set it to the first valid value
                 if (peakValue === null) {
                     peakValue = msg.payload;
+                    status = true;
                 }
                 // Find the peak value
                 else if (msg.payload > peakValue) {
                     peakValue = msg.payload;
+                    status = true;
                 }
             }
-            // Send the peak value
-            node.send({payload: peakValue});
+            // Send the peak value alongwith other node parameters and status 
+            node.send({payload:{peakValue,min,max,status}});
         });
     }
     RED.nodes.registerType("peak-value-range", PeakValueRangeNode);
