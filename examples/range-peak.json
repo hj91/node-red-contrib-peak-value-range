@@ -73,7 +73,11 @@
         "y": 220,
         "wires": [
             [
-                "1ace163afc3e6219"
+                "1ace163afc3e6219",
+                "b5beb5f3727fdf68",
+                "51db90ce4718060c",
+                "0d7ed34fde064b6b",
+                "20767f26fcde337d"
             ]
         ],
         "icon": "font-awesome/fa-line-chart"
@@ -93,6 +97,168 @@
         "statusType": "auto",
         "x": 790,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b5beb5f3727fdf68",
+        "type": "function",
+        "z": "31acf1fa8cf811d0",
+        "name": "status",
+        "func": "var status = msg.payload.status\n\nmsg.payload = status;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 440,
+        "wires": [
+            [
+                "a729e6910a1ab180",
+                "83cc2ed684fe1e48"
+            ]
+        ]
+    },
+    {
+        "id": "a729e6910a1ab180",
+        "type": "debug",
+        "z": "31acf1fa8cf811d0",
+        "name": "debug 301",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 990,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "51db90ce4718060c",
+        "type": "function",
+        "z": "31acf1fa8cf811d0",
+        "name": "peakValue",
+        "func": "var peakValue = msg.payload.peakValue\n\nmsg.payload = peakValue;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "11c1d6c2b73cb61a"
+            ]
+        ]
+    },
+    {
+        "id": "0d7ed34fde064b6b",
+        "type": "function",
+        "z": "31acf1fa8cf811d0",
+        "name": "min",
+        "func": "var min = msg.payload.min;\n\nmsg.payload = min;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 360,
+        "wires": [
+            [
+                "afa135262a5b6e3b"
+            ]
+        ]
+    },
+    {
+        "id": "20767f26fcde337d",
+        "type": "function",
+        "z": "31acf1fa8cf811d0",
+        "name": "max",
+        "func": "var max = msg.payload.max;\n\nmsg.payload = max;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 400,
+        "wires": [
+            [
+                "5a1bca1eba88fd53"
+            ]
+        ]
+    },
+    {
+        "id": "83cc2ed684fe1e48",
+        "type": "ui_text",
+        "z": "31acf1fa8cf811d0",
+        "group": "1e1cb181.5f2e01",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1150,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "5a1bca1eba88fd53",
+        "type": "ui_text",
+        "z": "31acf1fa8cf811d0",
+        "group": "1e1cb181.5f2e01",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "max",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1150,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "afa135262a5b6e3b",
+        "type": "ui_text",
+        "z": "31acf1fa8cf811d0",
+        "group": "1e1cb181.5f2e01",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "min",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1150,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "11c1d6c2b73cb61a",
+        "type": "ui_text",
+        "z": "31acf1fa8cf811d0",
+        "group": "1e1cb181.5f2e01",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "peak",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1150,
+        "y": 320,
         "wires": []
     },
     {
@@ -121,5 +287,24 @@
         "reconnectOnTimeout": true,
         "reconnectTimeout": 5000,
         "parallelUnitIdsAllowed": false
+    },
+    {
+        "id": "1e1cb181.5f2e01",
+        "type": "ui_group",
+        "name": "Peak",
+        "tab": "324fffd2c6849c89",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "324fffd2c6849c89",
+        "type": "ui_tab",
+        "name": "Peak",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     }
 ]
